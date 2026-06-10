@@ -633,11 +633,11 @@ section { padding: 5rem 2rem; }
 }
 
 /* ── FOOTER ── */
-footer { background: #1e2e1c; padding: 2.5rem 2rem; text-align: center; border-top: 0.5px solid rgba(181,201,168,0.1); }
-footer img { width: 40px; margin-bottom: 1rem; opacity: 0.5; }
+footer { background: linear-gradient(150deg, #c8dfc0 0%, #dce9d2 18%, #eee6d6 42%, #f2ead8 60%, #e5dece 78%, #ccdfc4 100%); padding: 3rem 2rem; text-align: center; }
+footer img { width: 120px; margin-bottom: 1.25rem; opacity: 1; }
 footer p {
   font-family: 'Noto Serif Display', serif; font-size: 9px;
-  letter-spacing: 0.18em; text-transform: uppercase; color: rgba(181,201,168,0.3);
+  letter-spacing: 0.18em; text-transform: uppercase; color: rgba(44,66,38,0.45);
 }
 
 /* ── SESSIONS NEW ── */
@@ -672,19 +672,34 @@ footer p {
 .pricing-banner-includes span::before { content: '✓  '; color: var(--sage-light); }
 
 .session-cards-new {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto repeat(7, auto);
+  gap: 0 1.5rem;
+  align-items: start;
 }
 @media(max-width:640px){ .session-cards-new { grid-template-columns: 1fr; } }
 
 .session-card-new {
   background: white;
   border-radius: 20px;
-  padding: 2rem 1.75rem;
   border: 1px solid rgba(122,146,104,0.14);
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 7;
+  padding: 0;
+  overflow: hidden;
 }
+.sc-row {
+  padding: 0 1.75rem;
+}
+.sc-badge { padding-top: 1.75rem; padding-bottom: 0.85rem; }
+.sc-title { padding-bottom: 0.75rem; }
+.sc-date  { padding-bottom: 0.75rem; }
+.sc-fac   { padding-top: 0.85rem; padding-bottom: 0.5rem; }
+.sc-venue { padding-bottom: 0.5rem; }
+.sc-desc  { padding-bottom: 0; flex: 1; }
+.sc-price { padding-top: 1rem; padding-bottom: 1.5rem; margin-top: 1rem; }
 
 /* Top row: badge + solo price */
 .session-card-top {
@@ -703,10 +718,6 @@ footer p {
 }
 .session-bundle-text {
   grid-column: 1 / -1;
-  background: rgba(122,146,104,0.06);
-  border: 1px solid rgba(122,146,104,0.18);
-  border-radius: 12px;
-  padding: 1.25rem 1.5rem;
   margin-bottom: 1.5rem;
 }
 .session-bundle-title {
@@ -1073,32 +1084,48 @@ footer p {
         </div>
       </div>
 
+      <!-- Subgrid: mỗi row-class tương ứng nhau giữa 2 card -->
       <div class="session-card-new">
-        <span class="session-badge online-badge">Buổi 1 · Online</span>
-        <h3 class="session-card-title">Thấy mình</h3>
-        <div class="session-datetime">
-          <span class="session-date">Chủ nhật, 21/06</span>
-          <span class="session-time">9:00 – 11:00</span>
+        <div class="sc-row sc-badge"><span class="session-badge online-badge">Buổi 1 · Online</span></div>
+        <div class="sc-row sc-title"><h3 class="session-card-title">Thấy mình</h3></div>
+        <div class="sc-row sc-date">
+          <div class="session-datetime">
+            <span class="session-date">Chủ nhật, 21/06</span>
+            <span class="session-time">9:00 – 11:00</span>
+          </div>
         </div>
-        <div class="session-facilitator">Dẫn dắt bởi Lưu Ly · School of Love</div>
-        <p class="session-desc-new">Đây là khoảng dừng để quay về với chính mình, nhìn lại hành trình 6 tháng đầu năm và kết nối lại với trạng thái, cảm xúc cùng nguồn năng lượng mình đang mang theo.</p>
-        <div class="session-price-bottom">111.000đ</div>
+        <div class="sc-row sc-fac">
+          <div class="session-facilitator">Dẫn dắt bởi Lưu Ly · School of Love</div>
+        </div>
+        <div class="sc-row sc-venue"><!-- buổi 1 không có venue --></div>
+        <div class="sc-row sc-desc">
+          <p class="session-desc-new">Đây là khoảng dừng để quay về với chính mình, nhìn lại hành trình 6 tháng đầu năm và kết nối lại với trạng thái, cảm xúc cùng nguồn năng lượng mình đang mang theo.</p>
+        </div>
+        <div class="sc-row sc-price"><div class="session-price-bottom">111.000đ</div></div>
       </div>
 
       <div class="session-card-new">
-        <span class="session-badge offline-badge">Buổi 2 · Offline</span>
-        <h3 class="session-card-title">Thấy mong muốn của mình</h3>
-        <div class="session-datetime">
-          <span class="session-date">Chủ nhật, 28/06</span>
-          <span class="session-time">8:00 – 12:00</span>
+        <div class="sc-row sc-badge"><span class="session-badge offline-badge">Buổi 2 · Offline</span></div>
+        <div class="sc-row sc-title"><h3 class="session-card-title">Thấy mong muốn của mình</h3></div>
+        <div class="sc-row sc-date">
+          <div class="session-datetime">
+            <span class="session-date">Chủ nhật, 28/06</span>
+            <span class="session-time">8:00 – 12:00</span>
+          </div>
         </div>
-        <div class="session-facilitator">Lưu Ly &amp; Việt Linh</div>
-        <div class="session-venue">
-          <span class="venue-name">Namaskar Adaptive Yoga – IAYT Member School</span>
-          <span class="venue-address">327F Lương Định Của, Bình Trưng, TP. Hồ Chí Minh</span>
+        <div class="sc-row sc-fac">
+          <div class="session-facilitator">Dẫn dắt bởi Lưu Ly &amp; Việt Linh</div>
         </div>
-        <p class="session-desc-new">Một không gian để nhìn rõ điều mình thật sự mong muốn, soi chiếu cuộc sống hiện tại và sắp xếp lại những ưu tiên cho chặng đường phía trước.</p>
-        <div class="session-price-bottom">399.000đ</div>
+        <div class="sc-row sc-venue">
+          <div class="session-venue">
+            <span class="venue-name">📍 Namaskar Adaptive Yoga – IAYT Member School</span>
+            <span class="venue-address">327F Lương Định Của, Bình Trưng, TP. Hồ Chí Minh</span>
+          </div>
+        </div>
+        <div class="sc-row sc-desc">
+          <p class="session-desc-new">Một không gian để nhìn rõ điều mình thật sự mong muốn, soi chiếu cuộc sống hiện tại và sắp xếp lại những ưu tiên cho chặng đường phía trước.</p>
+        </div>
+        <div class="sc-row sc-price"><div class="session-price-bottom">399.000đ</div></div>
       </div>
 
     </div>
@@ -1112,12 +1139,9 @@ footer p {
   <div class="container">
     <h2 class="section-heading on-dark" style="text-align:center">Có những hạt giống<br><em>đã ở đó từ rất lâu.</em></h2>
     <p class="section-body on-dark" style="text-align:center;max-width:520px;margin:0 auto 2rem">Chúng không cần được thúc ép để lớn lên. Chỉ cần được nhìn thấy. Được lắng nghe. Và được chăm sóc bằng sự hiện diện và yêu thương.<br><br>Nếu mình đang cần một khoảng dừng giữa năm để nhìn lại điều đã nảy mầm và nhận ra điều đang chờ hé nở bên trong mình, <strong style="color:#d4bc82">Giữa Mùa Hé Nở</strong> có thể là món quà mình dành cho bản thân trong mùa này.</p>
-    <div style="max-width:640px;margin:0 auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.25)">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd7I_9EV68jGXlgacsWesrIJHMoTphjDjtOwPHwb99fvHHLHQ/viewform?embedded=true" width="100%" height="820" frameborder="0" marginheight="0" marginwidth="0" style="display:block;background:white">Đang tải…</iframe>
+    <div style="text-align:center;margin-top:2.5rem">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd7I_9EV68jGXlgacsWesrIJHMoTphjDjtOwPHwb99fvHHLHQ/viewform" target="_blank" class="btn-primary">Đăng ký ngay →</a>
     </div>
-    <p style="text-align:center;margin-top:1.25rem">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd7I_9EV68jGXlgacsWesrIJHMoTphjDjtOwPHwb99fvHHLHQ/viewform" target="_blank" class="btn-register-fallback">Mở form đăng ký ↗</a>
-    </p>
   </div>
 </section>
 
